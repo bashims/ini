@@ -92,7 +92,7 @@ func (f *File) NewSection(name string) (*Section, error) {
 	}
 
 	if !f.options.AllowNonUniqueSections && inSlice(name, f.sectionList) {
-		return f.sections[name][0], nil
+		return nil, fmt.Errorf("duplicate section %q", name)
 	}
 
 	f.sectionList = append(f.sectionList, name)
